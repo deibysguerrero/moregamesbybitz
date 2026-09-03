@@ -1,4 +1,5 @@
 #pragma once
+#include <Geode/ui/Popup.hpp>
 #include <Geode/Bindings.hpp>
 #include <Geode/Geode.hpp>
 class WorldLevel : public geode::Popup<std::string const&> {
