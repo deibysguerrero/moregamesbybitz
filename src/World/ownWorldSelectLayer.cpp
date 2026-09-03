@@ -1,5 +1,4 @@
 #include "ownWorldSelectLayer.h"
-//#include "NewLevelPage.h"
 #include <Geode/Geode.hpp>
 #include <Geode/ui/Popup.hpp>
 #include <Geode/ui/General.hpp>
@@ -12,105 +11,10 @@
 #include "../Meltdown/MeltdownSelectLayer.h"
 #include <iostream>
 #include "GJWorldNodeDecomp.hpp"
-#include "GJWorldNodeDecomp.cpp"
 #include "WorldLevel.hpp"
-#include "WorldLevel.cpp"
 
 using namespace geode::prelude;
-
-ccColor3B colors2s[] = {
-    {255, 0, 0},    // Rojo
-    {0, 255, 0},    // Verde
-    {0, 0, 255}     // Azul
-};
-int numColors2s = sizeof(colors2s) / sizeof(colors2s[0]);
-int currentColorIndex2s = 0;
-
-ownWorldSelectLayer* ownWorldSelectLayer::create(int page) {
-    auto ret = new ownWorldSelectLayer();
-    if (ret && ret->init(page)) {
-        ret->autorelease();
-        return ret;
-    }
-    CC_SAFE_DELETE(ret);
-    return nullptr;
-};
-
-CCScene* ownWorldSelectLayer::scene(int page) {
-    auto layer = ownWorldSelectLayer::create(page);
-    auto scene = CCScene::create();
-    scene->addChild(layer);
-    return scene;
-}
-
-void ownWorldSelectLayer::importSheet() {
-    auto* textureCache = CCTextureCache::sharedTextureCache();
-    auto* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-
-    textureCache->addImage("WorldSheet.png", false);
-    spriteFrameCache->addSpriteFramesWithFile("WorldSheet.plist");
-}
-
-bool ownWorldSelectLayer::init(int page) {
-    if (!CCLayer::init()) return false;
-
-
-    this->setID("ownWorldSelectLayer"_spr);
-    setKeypadEnabled(true);
-      auto node = more::GJWorldNodeDecomp::create(1,this);
-      auto node2 = more::GJWorldNodeDecomp::create(1, this);
-      auto node3 = more::GJWorldNodeDecomp::create(1, this);
-
-    //auto node = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-    //auto node2 = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-    //auto node3 = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-    auto GM = GameManager::sharedState();
-    auto GLM = GameLevelManager::sharedState();
-    /*addChild(node,2);*/
-    importSheet();
-   
-     CCString* path = CCString::createWithFormat(
-         "worldIsland_%02d.png",
-         1
-     );
-
-     CCSprite* sprite = CCSprite::createWithSpriteFrameName(
-         path->getCString()
-     );
-
-     CCString* path2 = CCString::createWithFormat(
-         "worldIsland_%02d.png",
-         2
-     );
-
-     CCSprite* sprite2 = CCSprite::createWithSpriteFrameName(
-         path2->getCString()
-     );
-
-
-     CCString* path3 = CCString::createWithFormat(
-         "worldIsland_%02d.png",
-         3
-     );
-
-     CCSprite* sprite3 = CCSprite::createWithSpriteFrameName(
-         path->getCString()
-     );
-     /*
-      CCString* path = CCString::createWithFormat(
-          "worldIsland_%02d.png",
-          1
-      );*/
-
-   
-
-
-      CCSprite* backSpr = CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
-      CCMenuItemSpriteExtra* backBtn = CCMenuItemSpriteExtra::create(backSpr, this, menu_selector(ownWorldSelectLayer::onClose));
-
-      CCMenu* backMenu = CCMenu::create();
-      backMenu->addChild(backBtn);
-      addChild(backMenu, 1);
+addChild(backMenu, 1);
 
       backMenu->setPosition(ccp(CCDirector::sharedDirector()->getScreenLeft() + 25.f, CCDirector::sharedDirector()->getScreenTop() - 22.f));
 
