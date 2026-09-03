@@ -1,3 +1,4 @@
+#include <Geode/ui/Popup.hpp>
 #include <Geode/Geode.hpp>
 #include "WorldLevel.hpp"
 #include <Geode/Geode.hpp>
